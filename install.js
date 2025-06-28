@@ -12,7 +12,7 @@ db.run(
 id INTEGER PRIMARY KEY AUTOINCREMENT,
 name TEXT NOT NULL,
 code TEXT NOT NULL,
-link TEXT NOT NULL,
+url TEXT NOT NULL,
 progression TEXT NOT NULL
 );
 `);

@@ -25,7 +25,9 @@ res.render("index");
 
 app.get("/addcourse", (req, res) => {
 
-res.render("addcourse");
+res.render("addcourse",{
+error: "" 
+});
 }
 
 ) ;
@@ -37,7 +39,30 @@ res.render("about");
 
 ) ;
 
+app.post("/addcourse", (req, res) => {
+let name = req.body.name;
+let code = req.body.code;
+let url = req.body.url;
+let progression = req.body.progression;
+let error = "";
 
+if(name != "" && code != "" && url != ""  && progression != ""){
+
+    const coursesValues = db.prepare("INSERT INTO courses(name, code, url, progression)VALUES(?,?,?,?)")
+    coursesValues.run(name, code, url, progression);
+    coursesValues.finalize();
+
+}else {
+
+    error = "All fields must be filled in "
+}
+    res.render("addcourse",{
+        error: error
+    })
+
+}
+
+) ;
 
 app.listen(port, () => 
 {
