@@ -13,7 +13,31 @@ app.get("/", (req, res) => {
 
 res.render("index");
 }
+
 ) ;
+
+app.get("/", (req, res) => {
+
+res.render("index");
+}
+
+) ;
+
+app.get("/addcourse", (req, res) => {
+
+res.render("addcourse");
+}
+
+) ;
+
+app.get("/about", (req, res) => {
+
+res.render("about");
+}
+
+) ;
+
+
 
 app.listen(port, () => 
 {
