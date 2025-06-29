@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-<header>
+
+  <div class="container">
+<header class="index_box1">
   <a class="logo_link" href="/">
     <h1>ServerBased</h1>
        </a>
@@ -22,11 +24,40 @@
 </header>
 
 
+<div class="index_box2">
+<table >
+<caption>Completed Courses</caption>
+<thead>
+  <tr>
+<th>Name</th>
+<th>Code</th>
+<th>Url</th>
+<th>Progression</th>
+<th>Remove</th>
+</tr>
+</thead>
+<tbody>
+<% if(locals.rows.length > 0 ) { %>
+
+<% locals.rows.forEach((row) => { %>    %>
+  <tr>
+ <td><%= row.name %></td>
+  <td><%= row.code %></td>
+   <td><a href="<%= row.url %>" >Link</a></td>
+    <td><%= row.progression %></td>
+     <td> <a href="/delete/ <%= row.id %>" class="remove_course">Remove</a></td>
+    </tr>
+<%  })%>
+<%  } %>  
+
+</tbody>
+</table>
+</div>
 
 
 
 
-<footer>
+<footer class="index_box3">
 <p class="p-footer">
 Niklas Smith <br>
 nism2400@student.miun.se <br>
@@ -34,6 +65,18 @@ moment 1 : serverbaserad <br>
 Kurskod: dt207g
 </p>
 </footer>
-
+</div>
 </body>
 </html>
+
+<!-- 
+
+<h2>test</h2>
+<% if(locals.rows.length > 0 ) { %>
+
+<% locals.rows.forEach((row) => { %>    %>
+  <article>
+    <p><%= row.name %></p>
+  </article>
+<%  })%>
+<%  } %> */  -->

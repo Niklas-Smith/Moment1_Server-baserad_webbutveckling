@@ -11,17 +11,28 @@ app.use(bodyParser.urlencoded({ extended: true  }))
 
 app.get("/", (req, res) => {
 
+db.all("SELECT * FROM courses ORDER BY id ASC;",(error, rows)=> {
+  if(error) {
+console.error(error.message);
+
+  }
+  res.render("index",{
+error:"",
+   rows: rows
+
+  } );
+
+
+}) ;
+});
+
+/*
 res.render("index");
 }
 
 ) ;
+*/
 
-app.get("/", (req, res) => {
-
-res.render("index");
-}
-
-) ;
 
 app.get("/addcourse", (req, res) => {
 
@@ -56,6 +67,8 @@ if(name != "" && code != "" && url != ""  && progression != ""){
 
     error = "All fields must be filled in "
 }
+
+
     res.render("addcourse",{
         error: error
     })
@@ -63,6 +76,20 @@ if(name != "" && code != "" && url != ""  && progression != ""){
 }
 
 ) ;
+
+app.get("/delete/:id", (req, res)=> {
+let id = req.params.id;
+
+
+db.run("DELETE FROM courses WHERE id=?;", id , (error)=> {
+if (error) {
+    console.error(error.message);
+}
+
+res.redirect("/");
+} )
+
+})
 
 app.listen(port, () => 
 {
